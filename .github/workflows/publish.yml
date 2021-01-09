@@ -1,7 +1,7 @@
 name: .NET Core
 on:
   push:
-    branches: [ main ]
+    branches: [ main, docfx ]
 
 env:
   # Stop wasting time caching packages
@@ -38,3 +38,14 @@ jobs:
 
       - name: Push to NuGet Feed
         run: dotnet nuget push ./nupkg/*.nupkg --source $NUGET_FEED --skip-duplicate --api-key $NUGET_API_KEY
+
+      - name: Build documentation
+        uses: nikeee/docfx-action@v1.0.0
+        with:
+          args: docfx/docfx.json
+
+      - name: Publish documentation on github pages
+        uses: maxheld83/ghpages@master
+        env:
+          BUILD_DIR: docfx/_site
+          GH_PAT: ${{ secrets.GH_PAT }}
