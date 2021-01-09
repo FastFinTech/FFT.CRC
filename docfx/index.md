@@ -2,69 +2,48 @@
 
 A fast, allocation-free implementation for incrementally calculating a CRC32 value on a stream of data slices as each slice becomes available.
 
+[![NuGet package](https://img.shields.io/nuget/v/FFT.CRC.svg)](https://nuget.org/packages/FFT.CRC)
+
 ## Features
 
-1. [`CRC32Builder`](#crc32builder): Allows you to add data one slice at a time as it becomes available, keeping a running total of the CRC32 calculation. Once all data has arrived, the final CRC32 value is provided.
+1. [`CRC32Builder`](xref:FFT.CRC.CRC32Builder): Allows you to add data one slice at a time as it becomes available, keeping a running total of the CRC32 calculation. Once all data has arrived, the final CRC32 value is provided.
 
-1. [`CRC32Calculator`](#crc32calculator): Exposes low-level methods for making your own CRC32 calculations without the `CRC32Builder` feature.
+1. [`CRC32Calculator`](xref:FFT.CRC.CRC32Calculator): Exposes low-level methods for making your own CRC32 calculations without the `CRC32Builder` feature.
 
-## CRC32Builder
+# Quickstarts
 
-**Quick start**
+# [CRC32Builder](#tab/CRC32Builder)
+
+[See reference](xref:FFT.CRC.CRC32Builder)
+
 ```csharp
+using System;
 using FFT.CRC;
-
-// in the real world, instead of this demo data, 
-// you would most likely be receiving your data spans from
-// some kind of stream
-Span<byte> demoData = new byte[] {1,2,3,4,5,6,7,8,9};
-
 // get an INITIALIZED builder struct
 var crcBuilder = CRC32Builder.CreateNew();
-
-// add two data slices
-crcBuilder.Add(demoData.Slice(0,2));
-crcBuilder.Add(demoData.Slice(2,2));
-
-// get the CRC32 value for all data added so far, if you need to
+// add each data segment
+foreach(ReadOnlySpan<byte> segment in data)
+  crcBuilder.Add(segment);
+// get the final calculation result
 var crcValue = crcBuilder.Value;
-
-// add some more data if you want to
-crcBuilder.Add(demoData.Slice(4,2));
-
-// get the updated CRC32 value
-crcValue = crcBuilder.Value;
-
 // optionally reset the builder ready for new data
 crcBuilder.Initialize();
 ```
 
-**Usage notes -- Initialization**
+# [CRC32Calculator](#tab/CRC32Calculator)
 
-This is a mutable struct that requires initialization. It is optimized for speed and does not contain any guards against developer carelessness such as forgetting to initialize it, or not understanding the intricacies of storing and passing a mutable struct in c#.
-
-The best way to obtain an initialized instance is to use the static `CRC32Builder.CreateNew()` method.
+[See reference](xref:FFT.CRC.CRC32Calculator)
 
 ```csharp
-using FFT.CRC32;
-
-// Example 1.
-CRC32Builder builder; // NOT INITIALIZED!!
-builder.Initialize(); // ok now it is ready for use.
-
-// Example 2.
-var builder = new CRC32Builder(); // NOT INITIALIZED!!
-builder.Initialize(); // ok now it is ready for use.
-
-// Example 3 - recommended.
-var builder = CRC32Builder.CreateNew(); // immediately ready for use!
+using System;
+using FFT.CRC;
+// initialize the CRC calculation value
+var crcValue = CRC32Calculator.SEED;
+// add each data segment, updating our crcValue variable
+foreach(ReadOnlySpan<byte> segment in data)
+  CRC32Calculator.Add(ref crcValue, segment);
+// get the finalized calculation value.
+crcValue = CRC32Calculator.Finalize(crcValue);
 ```
 
-You can call the builder's `Initialize()` method at any time to reset the calculation to accept new data from the beginning.
-
-## CRC32Calculator
-
-Low-level CRC32 calculation methods.
-
-See class documentation.
-
+***

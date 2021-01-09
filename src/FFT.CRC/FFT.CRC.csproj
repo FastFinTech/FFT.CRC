@@ -16,6 +16,7 @@
     <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>crc</PackageTags>
+    <ApplicationIcon>FFT.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

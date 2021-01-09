@@ -32,7 +32,8 @@
     "resource": [
       {
         "files": [
-          "images/**"
+          "images/**",
+          "logo.svg"
         ]
       }
     ],
@@ -51,7 +52,8 @@
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
-      "default"
+      "default",
+      "templates/highlighting"
     ],
     "postProcessors": [],
     "markdownEngineName": "markdig",
