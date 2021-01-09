@@ -12,9 +12,38 @@ A fast, allocation-free implementation for incrementally calculating a CRC32 val
 
 ## CRC32Builder
 
-**Initialization**
+**Quick start**
+```csharp
+using FFT.CRC;
 
-This is a struct. You must initialize it before you use it. It does NOT self-initialize and it does not check to make sure you have initialized it, because it is optimized for speed, not checking your mistakes.
+// in the real world, instead of this demo data, 
+// you would most likely be receiving your data spans from
+// some kind of stream
+Span<byte> demoData = new byte[] {1,2,3,4,5,6,7,8,9};
+
+// get an INITIALIZED builder struct
+var crcBuilder = CRC32Builder.CreateNew();
+
+// add two data slices
+crcBuilder.Add(demoData.Slice(0,2));
+crcBuilder.Add(demoData.Slice(2,2));
+
+// get the CRC32 value for all data added so far, if you need to
+var crcValue = crcBuilder.Value;
+
+// add some more data if you want to
+crcBuilder.Add(demoData.Slice(4,2));
+
+// get the updated CRC32 value
+crcValue = crcBuilder.Value;
+
+// optionally reset the builder ready for new data
+crcBuilder.Initialize();
+```
+
+**Usage notes -- Initialization**
+
+This is a mutable struct that requires initialization. It is optimized for speed and does not contain any guards against developer carelessness such as forgetting to initialize it, or not understanding the intricacies of storing and passing a mutable struct in c#.
 
 The best way to obtain an initialized instance is to use the static `CRC32Builder.CreateNew()` method.
 
@@ -29,73 +58,11 @@ builder.Initialize(); // ok now it is ready for use.
 var builder = new CRC32Builder(); // NOT INITIALIZED!!
 builder.Initialize(); // ok now it is ready for use.
 
-// Example 3.
+// Example 3 - recommended.
 var builder = CRC32Builder.CreateNew(); // immediately ready for use!
 ```
 
-**Use**
-
-Use the `CRC32Builder.Add(Span<byte> data)` method as many times as needed until all data has been received and calculated.
-
-Use the `CRC32Builder.Value` property to get the CRC value for all the data that has been added so far.
-
-Optionally use the `CRC32Builder.Initalize()` method to reset the builder to start a new CRC calculation.
-
-The example `CRCAppender` class below shows one way you might use a `CRC32Builder`. 
-
-```csharp
-
-/// <summary>
-/// Keeps a running calculation of the CRC of the data written to the inner stream,
-/// and writes the CRC value to the inner stream when required. The CRC calculation is
-/// reset after the CRC value is written to the inner stream.
-/// </summary>
-public struct CRCAppender
-{
-    /// <summary>
-    /// The stream to be written to.
-    /// </summary>
-    private readonly Stream InnerStream;
-
-    /// <summary>
-    /// The builder that keeps track of the CRC value as each slice of data becomes available
-    /// </summary>
-    private readonly CRC32Builder CRCBuilder;
-
-    /// <summary>
-    /// Creates a new <see cref="CRCAppender"/> struct with the given inner stream.
-    /// </summary>
-    /// <param name="innerStream">The stream to be written to.</param>
-    public CRCAppender(Stream innerStream)
-    {
-        this.InnerStream = innerStream;
-        this.CRCBuilder = CRC32Builder.Create(); // gets an INITIALIZED builder.
-    }
-
-    /// <summary>
-    /// Writes the given data to the inner stream, keeping track of the running CRC calculation.
-    /// </summary>
-    /// <param name="includeCRC">
-    /// When true, the CRC value will also be written to the inner stream, and the CRC calculation
-    /// will be reset ready to begin calculating a new CRC value for future incoming data.
-    /// </param>
-    public void Write(byte[] buffer, int offset, int count, bool includeCRC)
-    {
-        // add the new data to the CRC calculation
-        this.CRCBuilder.Add(buffer.AsSpan().Slice(offset, count));
-        // write the new data to the inner stream.
-        this.InnerStream.Write(buffer, offset, count);
-        // when it's necessary to finalize the crc calculation and append it to the inner stream:
-        if (includeCRC)
-        {
-            // write the crc value to the inner stream
-            this.InnerStream.Write(BitConverter.GetBytes(this.CRCBuilder.Value), 0, 4);
-            // and reset the crc calculation, ready to begin again with new data as it arrives.
-            this.CRCBuilder.Initialize();
-        }
-    }
-}
-```
+You can call the builder's `Initialize()` method at any time to reset the calculation to accept new data from the beginning.
 
 ## CRC32Calculator
 

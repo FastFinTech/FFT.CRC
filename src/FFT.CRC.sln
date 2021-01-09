@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".sln", ".sln", "{85752EAC-6
 		..\LICENSE = ..\LICENSE
 		..\.github\workflows\publish.yml = ..\.github\workflows\publish.yml
 		..\README.md = ..\README.md
+		..\version.json = ..\version.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFT.CRC", "FFT.CRC\FFT.CRC.csproj", "{40AD2A34-9972-4BE0-834D-955660E85EB9}"
