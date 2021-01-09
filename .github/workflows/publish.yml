@@ -37,7 +37,7 @@ jobs:
         run: dotnet pack -v minimal -c Release --no-restore --include-symbols --include-source -o nupkg ./src/FFT.CRC/FFT.CRC.csproj
 
       - name: Push to NuGet Feed
-        if: contains(github.ref, "main") # used temporarily to prevent nuget package pushing when doing experiments in the docfx branch
+        if: contains(github.ref, 'main') # used temporarily to prevent nuget package pushing when doing experiments in the docfx branch
         run: dotnet nuget push ./nupkg/*.nupkg --source $NUGET_FEED --skip-duplicate --api-key $NUGET_API_KEY
 
       - name: Build documentation
