@@ -2,6 +2,7 @@
 
 A fast, allocation-free implementation for incrementally calculating a CRC32 value on a stream of data slices as each slice becomes available.
 
+[![Source code](https://img.shields.io/static/v1?label=github&message=main&logo=github&color=blue)](https://github.com/FastFinTech/FFT.CRC)
 [![NuGet package](https://img.shields.io/nuget/v/FFT.CRC.svg)](https://nuget.org/packages/FFT.CRC)
 
 ## Features
