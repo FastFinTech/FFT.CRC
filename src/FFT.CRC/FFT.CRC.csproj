@@ -12,7 +12,7 @@
     <Description>$(Summary)</Description>
     <Company>True Goodwill</Company>
     <Authors>True Goodwill</Authors>
-    <PackageProjectUrl>https://github.com/FFT/FFT.CRC32</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/FFT/FFT.CRC</PackageProjectUrl>
     <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>crc</PackageTags>
