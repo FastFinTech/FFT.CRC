@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>FFT.CRC </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="FFT.CRC ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/vs.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script> 
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="fftcrc">FFT.CRC</h1>
+
+<p>A fast, allocation-free implementation for incrementally calculating a CRC32 value on a stream of data slices as each slice becomes available.</p>
+<p><a href="https://github.com/FastFinTech/FFT.CRC" title="View the source code"><img src="https://img.shields.io/static/v1?label=github&amp;message=main&amp;logo=github&amp;color=blue" alt="Source code"></a>
+<a href="https://nuget.org/packages/FFT.CRC" title="View the nuget package"><img src="https://img.shields.io/nuget/v/FFT.CRC.svg" alt="NuGet package"></a></p>
+<h2 id="features">Features</h2>
+<ol>
+<li><p><a class="xref" href="api/FFT.CRC.CRC32Builder.html"><code>CRC32Builder</code></a>: Allows you to add data one slice at a time as it becomes available, keeping a running total of the CRC32 calculation. Once all data has arrived, the final CRC32 value is provided.</p>
+</li>
+<li><p><a class="xref" href="api/FFT.CRC.CRC32Calculator.html"><code>CRC32Calculator</code></a>: Exposes low-level methods for making your own CRC32 calculations without the <code>CRC32Builder</code> feature.</p>
+</li>
+</ol>
+<h1 id="quickstarts">Quickstarts</h1>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_CRC32Builder" role="tab" aria-controls="tabpanel_CeZOj-G++Q_CRC32Builder" data-tab="CRC32Builder" tabindex="0" aria-selected="true">CRC32Builder</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_CRC32Calculator" role="tab" aria-controls="tabpanel_CeZOj-G++Q_CRC32Calculator" data-tab="CRC32Calculator" tabindex="-1">CRC32Calculator</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q_CRC32Builder" role="tabpanel" data-tab="CRC32Builder">
+
+<p><a class="xref" href="api/FFT.CRC.CRC32Builder.html">See reference</a></p>
+<pre><code class="lang-csharp">using System;
+using FFT.CRC;
+// get an INITIALIZED builder struct
+var crcBuilder = CRC32Builder.InitializedValue;
+// add each data segment
+foreach(ReadOnlySpan&lt;byte&gt; segment in data)
+  crcBuilder.Add(segment);
+// get the final calculation result
+var crcValue = crcBuilder.Value;
+// optionally reset the builder ready for new data
+crcBuilder.Initialize();
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q_CRC32Calculator" role="tabpanel" data-tab="CRC32Calculator" aria-hidden="true" hidden="hidden">
+
+<p><a class="xref" href="api/FFT.CRC.CRC32Calculator.html">See reference</a></p>
+<pre><code class="lang-csharp">using System;
+using FFT.CRC;
+// initialize the CRC calculation value
+var crcValue = CRC32Calculator.SEED;
+// add each data segment, updating our crcValue variable
+foreach(ReadOnlySpan&lt;byte&gt; segment in data)
+  CRC32Calculator.Add(ref crcValue, segment);
+// get the finalized calculation value.
+crcValue = CRC32Calculator.Finalize(crcValue);
+</code></pre>
+</section>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/FastFinTech/FFT.CRC/blob/main/docfx/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <script src="//unpkg.com/highlightjs-dotnetconfig@0.9.1/dist/dotnetconfig.min.js"></script>
+  </body>
+</html>

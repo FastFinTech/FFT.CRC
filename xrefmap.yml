@@ -1,0 +1,111 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: FFT.CRC
+  name: FFT.CRC
+  href: api/FFT.CRC.html
+  commentId: N:FFT.CRC
+  fullName: FFT.CRC
+  nameWithType: FFT.CRC
+- uid: FFT.CRC.CRC32Builder
+  name: CRC32Builder
+  href: api/FFT.CRC.CRC32Builder.html
+  commentId: T:FFT.CRC.CRC32Builder
+  fullName: FFT.CRC.CRC32Builder
+  nameWithType: CRC32Builder
+- uid: FFT.CRC.CRC32Builder.Add(ReadOnlySpan{System.Byte})
+  name: Add(ReadOnlySpan<Byte>)
+  href: api/FFT.CRC.CRC32Builder.html#FFT_CRC_CRC32Builder_Add_ReadOnlySpan_System_Byte__
+  commentId: M:FFT.CRC.CRC32Builder.Add(ReadOnlySpan{System.Byte})
+  name.vb: Add(ReadOnlySpan(Of Byte))
+  fullName: FFT.CRC.CRC32Builder.Add(ReadOnlySpan<System.Byte>)
+  fullName.vb: FFT.CRC.CRC32Builder.Add(ReadOnlySpan(Of System.Byte))
+  nameWithType: CRC32Builder.Add(ReadOnlySpan<Byte>)
+  nameWithType.vb: CRC32Builder.Add(ReadOnlySpan(Of Byte))
+- uid: FFT.CRC.CRC32Builder.Add*
+  name: Add
+  href: api/FFT.CRC.CRC32Builder.html#FFT_CRC_CRC32Builder_Add_
+  commentId: Overload:FFT.CRC.CRC32Builder.Add
+  isSpec: "True"
+  fullName: FFT.CRC.CRC32Builder.Add
+  nameWithType: CRC32Builder.Add
+- uid: FFT.CRC.CRC32Builder.Initialize
+  name: Initialize()
+  href: api/FFT.CRC.CRC32Builder.html#FFT_CRC_CRC32Builder_Initialize
+  commentId: M:FFT.CRC.CRC32Builder.Initialize
+  fullName: FFT.CRC.CRC32Builder.Initialize()
+  nameWithType: CRC32Builder.Initialize()
+- uid: FFT.CRC.CRC32Builder.Initialize*
+  name: Initialize
+  href: api/FFT.CRC.CRC32Builder.html#FFT_CRC_CRC32Builder_Initialize_
+  commentId: Overload:FFT.CRC.CRC32Builder.Initialize
+  isSpec: "True"
+  fullName: FFT.CRC.CRC32Builder.Initialize
+  nameWithType: CRC32Builder.Initialize
+- uid: FFT.CRC.CRC32Builder.InitializedValue
+  name: InitializedValue
+  href: api/FFT.CRC.CRC32Builder.html#FFT_CRC_CRC32Builder_InitializedValue
+  commentId: P:FFT.CRC.CRC32Builder.InitializedValue
+  fullName: FFT.CRC.CRC32Builder.InitializedValue
+  nameWithType: CRC32Builder.InitializedValue
+- uid: FFT.CRC.CRC32Builder.InitializedValue*
+  name: InitializedValue
+  href: api/FFT.CRC.CRC32Builder.html#FFT_CRC_CRC32Builder_InitializedValue_
+  commentId: Overload:FFT.CRC.CRC32Builder.InitializedValue
+  isSpec: "True"
+  fullName: FFT.CRC.CRC32Builder.InitializedValue
+  nameWithType: CRC32Builder.InitializedValue
+- uid: FFT.CRC.CRC32Builder.Value
+  name: Value
+  href: api/FFT.CRC.CRC32Builder.html#FFT_CRC_CRC32Builder_Value
+  commentId: P:FFT.CRC.CRC32Builder.Value
+  fullName: FFT.CRC.CRC32Builder.Value
+  nameWithType: CRC32Builder.Value
+- uid: FFT.CRC.CRC32Builder.Value*
+  name: Value
+  href: api/FFT.CRC.CRC32Builder.html#FFT_CRC_CRC32Builder_Value_
+  commentId: Overload:FFT.CRC.CRC32Builder.Value
+  isSpec: "True"
+  fullName: FFT.CRC.CRC32Builder.Value
+  nameWithType: CRC32Builder.Value
+- uid: FFT.CRC.CRC32Calculator
+  name: CRC32Calculator
+  href: api/FFT.CRC.CRC32Calculator.html
+  commentId: T:FFT.CRC.CRC32Calculator
+  fullName: FFT.CRC.CRC32Calculator
+  nameWithType: CRC32Calculator
+- uid: FFT.CRC.CRC32Calculator.Add(System.UInt32@,ReadOnlySpan{System.Byte})
+  name: Add(ref UInt32, ReadOnlySpan<Byte>)
+  href: api/FFT.CRC.CRC32Calculator.html#FFT_CRC_CRC32Calculator_Add_System_UInt32__ReadOnlySpan_System_Byte__
+  commentId: M:FFT.CRC.CRC32Calculator.Add(System.UInt32@,ReadOnlySpan{System.Byte})
+  name.vb: Add(ByRef UInt32, ReadOnlySpan(Of Byte))
+  fullName: FFT.CRC.CRC32Calculator.Add(ref System.UInt32, ReadOnlySpan<System.Byte>)
+  fullName.vb: FFT.CRC.CRC32Calculator.Add(ByRef System.UInt32, ReadOnlySpan(Of System.Byte))
+  nameWithType: CRC32Calculator.Add(ref UInt32, ReadOnlySpan<Byte>)
+  nameWithType.vb: CRC32Calculator.Add(ByRef UInt32, ReadOnlySpan(Of Byte))
+- uid: FFT.CRC.CRC32Calculator.Add*
+  name: Add
+  href: api/FFT.CRC.CRC32Calculator.html#FFT_CRC_CRC32Calculator_Add_
+  commentId: Overload:FFT.CRC.CRC32Calculator.Add
+  isSpec: "True"
+  fullName: FFT.CRC.CRC32Calculator.Add
+  nameWithType: CRC32Calculator.Add
+- uid: FFT.CRC.CRC32Calculator.Finalize(System.UInt32)
+  name: Finalize(UInt32)
+  href: api/FFT.CRC.CRC32Calculator.html#FFT_CRC_CRC32Calculator_Finalize_System_UInt32_
+  commentId: M:FFT.CRC.CRC32Calculator.Finalize(System.UInt32)
+  fullName: FFT.CRC.CRC32Calculator.Finalize(System.UInt32)
+  nameWithType: CRC32Calculator.Finalize(UInt32)
+- uid: FFT.CRC.CRC32Calculator.Finalize*
+  name: Finalize
+  href: api/FFT.CRC.CRC32Calculator.html#FFT_CRC_CRC32Calculator_Finalize_
+  commentId: Overload:FFT.CRC.CRC32Calculator.Finalize
+  isSpec: "True"
+  fullName: FFT.CRC.CRC32Calculator.Finalize
+  nameWithType: CRC32Calculator.Finalize
+- uid: FFT.CRC.CRC32Calculator.SEED
+  name: SEED
+  href: api/FFT.CRC.CRC32Calculator.html#FFT_CRC_CRC32Calculator_SEED
+  commentId: F:FFT.CRC.CRC32Calculator.SEED
+  fullName: FFT.CRC.CRC32Calculator.SEED
+  nameWithType: CRC32Calculator.SEED
