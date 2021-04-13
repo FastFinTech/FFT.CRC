@@ -33,7 +33,7 @@ namespace FFT.CRC.Benchmark
         [Benchmark]
         public uint SpeedTest()
         {
-            var builder = CRC32Builder.CreateInitialized();
+            var builder = CRC32Builder.InitializedValue;
             for (var i = 0; i < 1024; i++)
             {
                 for (var j = 0; j < 3; j++)

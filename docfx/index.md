@@ -21,7 +21,7 @@ A fast, allocation-free implementation for incrementally calculating a CRC32 val
 using System;
 using FFT.CRC;
 // get an INITIALIZED builder struct
-var crcBuilder = CRC32Builder.CreateNew();
+var crcBuilder = CRC32Builder.InitializedValue;
 // add each data segment
 foreach(ReadOnlySpan<byte> segment in data)
   crcBuilder.Add(segment);
